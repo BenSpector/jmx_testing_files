@@ -581,7 +581,6 @@ function get_mbean_data(cli) {
   //clients passed in at the command-line will not have these fields
   if (client_pods[cli][1]) temp_dict['pod_full_name'] = client_pods[cli][1];
   if (client_pods[cli][2]) temp_dict['pod_uid'] = client_pods[cli][2];
-  temp_dict['first_query_time'] =  new Date().getTime();
 
   for (var mbean in parameters[cli]) {
     temp_dict[mbean] = {};
@@ -600,7 +599,7 @@ function get_mbean_data(cli) {
     //coallesce related fields
     final_condense(temp_dict);
     temp_dict['print time'] =  new Date().getTime();
-    console.log(JSON.stringify(temp_dict,null,2));
+    console.log(JSON.stringify(temp_dict));
     //we are finished with this client, disconnect it
     clients[cli].disconnect();
   });
